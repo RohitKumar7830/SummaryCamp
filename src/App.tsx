@@ -7,8 +7,8 @@ import Register from "./pages/Register";
 // import Activities from "./pages/Activities";
 // import Instructors from "./pages/Instructors";
 import FAQ from "./pages/FAQ";
-// import Contact from "./pages/Contact";
-// import Apply from "./pages/Apply";
+import Contact from "./pages/ContactUs";
+import ApplyCounselor from "./pages/ApplyCounselor";
 
 const App: React.FC = () => {
   return (
@@ -16,11 +16,11 @@ const App: React.FC = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
-        {/* <Route path="/activities" element={<Activities />} />
-        <Route path="/instructors" element={<Instructors />} /> */}
+        {/* {/* <Route path="/activities" element={<Activities />} /> */}
         <Route path="/faq" element={<FAQ />} />
-        {/* <Route path="/contact" element={<Contact />} /> */}
+        <Route path="/contact" element={<Contact />} />
         <Route path="/apply" element={<Register />} />
+        <Route path="/apply-counselor" element={<ApplyCounselor />} /> {/* Apply for Counselor */}
       </Routes>
     </>
   );

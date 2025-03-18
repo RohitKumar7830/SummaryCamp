@@ -1,23 +1,46 @@
 import React from "react";
 
-const impactImages = [
-  "https://img.freepik.com/free-photo/front-view-scouts-with-binoculars_23-2149885214.jpg?t=st=1741217543~exp=1741221143~hmac=42cb3edea244bc22746b10ad662fef45a6ca3b7aa56caffb4dc401bcf429a466&w=2000",
-  "https://img.freepik.com/free-photo/different-moments-theater-class_23-2151104277.jpg?t=st=1741217727~exp=1741221327~hmac=b32962ca3835fd4c1c5ba29e0077b03f3b6b625457de667cdc772b908779b14d&w=2000",
-  "https://img.freepik.com/free-photo/high-angle-delicious-pakistan-meal-basket_23-2148821575.jpg?t=st=1741217885~exp=1741221485~hmac=3af9e8c58c6ab66d041349b738b7888350306b358976df41ca9115d1abdfc421&w=996",
+// Importing all 15 images from local assets folder
+import img1 from "../../assets/campsite1.jpg";
+import img2 from "../../assets/campsite2.jpg";
+import img3 from "../../assets/campsite3.jpg";
+import img4 from "../../assets/campsite4.jpg";
+import img5 from "../../assets/campsite5.jpg";
+import img6 from "../../assets/campsite6.jpg";
+import img7 from "../../assets/campsite7.jpg";
+import img8 from "../../assets/campsite8.jpg";
+import img9 from "../../assets/campsite9.jpg";
+import img10 from "../../assets/campsite10.jpg";
+import img11 from "../../assets/campsite11.jpg";
+import img12 from "../../assets/campsite12.jpg";
+import img13 from "../../assets/campsite13.jpg";
+import img14 from "../../assets/campsite14.jpg";
+import img15 from "../../assets/campsite15.jpg";
+
+const campsiteImages = [
+  img1, img2, img3, img4, img5,
+  img6, img7, img8, img9, img10,
+  img11, img12, img13, img14, img15
 ];
 
 const ImpactSection: React.FC = () => {
   return (
-    <section className="px-10 py-16 text-center">
-      <h2 className="text-3xl font-bold">The Impact of Our Camp</h2>
+    <section className="px-6 py-16 text-center">
+      <h2 className="text-3xl font-bold">Explore Our Camp Site</h2>
       <p className="text-gray-600 mt-4 max-w-3xl mx-auto">
-        Our camp is more than just a fun-filled week. It's an opportunity for children to deepen their connection to their Indian heritage, build confidence, and make lifelong friends. 
-        By nurturing a sense of cultural pride and identity, we hope to empower the next generation of Indian-Americans to embrace their roots and shine on the world stage.
+        Experience the beauty of nature at our camp! Our scenic campsite is a perfect place for outdoor adventures, learning, and creating unforgettable memories.
       </p>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
-        {impactImages.map((img, index) => (
-          <div key={index} className="w-full bg-cover bg-center aspect-square rounded-xl" style={{ backgroundImage: `url(${img})` }}></div>
+      {/* Image Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-8">
+        {campsiteImages.map((img, index) => (
+          <div key={index} className="rounded-lg shadow-md overflow-hidden">
+            <img 
+              src={img} 
+              alt={`Camp Site ${index + 1}`} 
+              className="w-full h-48 object-cover transition-transform duration-300 hover:scale-105"
+            />
+          </div>
         ))}
       </div>
     </section>

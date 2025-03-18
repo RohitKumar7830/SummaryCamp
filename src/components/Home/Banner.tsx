@@ -1,5 +1,6 @@
 import React from "react";
 
+
 const Banner: React.FC = () => {
   return (
     <div className="relative w-[90%] max-w-4xl h-80 mx-auto mt-12 mb-16 rounded-lg overflow-hidden">

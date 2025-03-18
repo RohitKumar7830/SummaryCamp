@@ -16,16 +16,19 @@ const Navbar: React.FC = () => {
       <ul className="hidden md:flex space-x-6">
         <li><Link to="/" className="hover:text-gray-600">Home</Link></li>
         <li><Link to="/about" className="hover:text-gray-600">About</Link></li>
-        {/* <li><Link to="/activities" className="hover:text-gray-600">Activities & Workshops</Link></li> */}
-        {/* <li><Link to="/instructors" className="hover:text-gray-600">Instructors</Link></li> */}
         <li><Link to="/faq" className="hover:text-gray-600">FAQ</Link></li>
         <li><Link to="/contact" className="hover:text-gray-600">Contact Us</Link></li>
       </ul>
 
-      {/* Apply Now Button (Desktop) */}
-      <Link to="/apply" className="hidden md:block bg-orange-500 text-white px-4 py-2 rounded-md hover:bg-orange-600">
-        Apply Now
-      </Link>
+      {/* Apply Now Buttons (Desktop) */}
+      <div className="hidden md:flex space-x-4">
+        <Link to="/apply" className="bg-orange-500 text-white px-4 py-2 rounded-md hover:bg-orange-600">
+          Apply for Camp
+        </Link>
+        <Link to="/apply-counselor" className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">
+          Apply for Counselor
+        </Link>
+      </div>
 
       {/* Three-Dot Menu Button (Mobile) */}
       <button 
@@ -41,12 +44,14 @@ const Navbar: React.FC = () => {
           <ul className="w-full text-center">
             <li className="py-2 border-b"><Link to="/" className="block hover:text-gray-600" onClick={() => setIsOpen(false)}>Home</Link></li>
             <li className="py-2 border-b"><Link to="/about" className="block hover:text-gray-600" onClick={() => setIsOpen(false)}>About</Link></li>
-            <li className="py-2 border-b"><Link to="/instructors" className="block hover:text-gray-600" onClick={() => setIsOpen(false)}>Instructors</Link></li>
             <li className="py-2 border-b"><Link to="/faq" className="block hover:text-gray-600" onClick={() => setIsOpen(false)}>FAQ</Link></li>
             <li className="py-2 border-b"><Link to="/contact" className="block hover:text-gray-600" onClick={() => setIsOpen(false)}>Contact Us</Link></li>
           </ul>
           <Link to="/apply" className="mt-2 bg-orange-500 text-white px-4 py-2 rounded-md hover:bg-orange-600 w-full text-center">
-            Apply Now
+            Apply for Camp
+          </Link>
+          <Link to="/apply-counselor" className="mt-2 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 w-full text-center">
+            Apply for Counselor
           </Link>
         </div>
       )}
