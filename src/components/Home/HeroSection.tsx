@@ -1,30 +1,53 @@
-import React from "react";
-import heroImage from "../../assets/hero.jpg"; // Correct import
+import React, { useEffect, useState } from "react";
+import heroImage from "../../assets/Girl_Meditating.jpg"; // Correct import
 
 const HeroSection: React.FC = () => {
-  const scrollToSection = () => {
-    document.getElementById("whatsIncluded")?.scrollIntoView({ behavior: "smooth" });
-  };
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 30) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <header
-      className="w-full flex flex-col items-center text-center py-20 bg-cover bg-center min-h-[480px] text-white"
+      className="relative w-full min-h-[750px] flex flex-col md:flex-row items-center text-center md:text-left bg-[#FDFDFD] mt-24"
       style={{
-        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4)), url(${heroImage})`, // ✅ Use template literals correctly
+        backgroundImage: `url(${heroImage})`,
+        backgroundSize: "cover", // Full background on mobile
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
       }}
     >
-      <h1 className="text-5xl font-black leading-tight max-w-3xl">
-        Welcome to DharmaAwakening Camp
-      </h1>
-      <p className="text-lg font-normal mt-4 max-w-xl">
-        Join us for a summer of wellness, cultural enrichment, and fun!
-      </p>
-      <button
-        className="mt-6 bg-orange-500 text-white px-6 py-3 rounded-full hover:bg-orange-600"
-        onClick={scrollToSection}
+      {/* Content Container */}
+      <div
+        className={`w-full md:w-1/2 p-6 md:pl-16 max-w-2xl text-black pt-32 md:pt-0 transition-all duration-700 ease-in-out ${
+          isScrolled ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+        }`}
       >
-        Learn More
-      </button>
+        <h1 className="text-4xl md:text-6xl font-[Poppins] tracking-wide">
+          Welcome to DharmaAwakening Camp
+        </h1>
+        <p className="text-lg font-normal mt-4">
+          Join us for a summer of wellness, cultural enrichment, and fun!
+        </p>
+        <button
+          className="mt-6 bg-orange-500 text-white px-6 py-3 rounded-full hover:bg-orange-600"
+          onClick={() =>
+            document.getElementById("whatsIncluded")?.scrollIntoView({ behavior: "smooth" })
+          }
+        >
+          Learn More
+        </button>
+      </div>
     </header>
   );
 };

@@ -36,7 +36,7 @@ const ApplyCounselor: React.FC = () => {
   return (
     <>
       <Navbar />
-      <div className="max-w-3xl mx-auto my-10 p-6 bg-white shadow-md rounded-lg">
+      <div className="max-w-3xl mx-auto my-10 p-6 bg-white shadow-md rounded-lg mt-28">
         <h2 className="text-2xl font-bold text-center mb-6">Counselor Application Form</h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           

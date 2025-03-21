@@ -3,6 +3,11 @@ import { ChevronDown, ChevronUp } from "lucide-react";
 
 const faqs = [
   {
+    question: "What’s the total fees for the week long camp?",
+    answer:
+      "$295 for the week long camp ( includes both boarding and lodging)",
+  },
+  {
     question: "What are the age groups and how are they divided?",
     answer:
       "We offer four age groups: 5-6, 7-9, 10-12, and 13-15. Children are placed in groups based on their age and grade level. We also have a teen leadership program for campers aged 16-18.",

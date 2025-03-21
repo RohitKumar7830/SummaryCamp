@@ -17,10 +17,10 @@ const Footer: React.FC = () => {
 
         {/* Navigation Links */}
         <nav className="mt-4 md:mt-0 flex space-x-6 text-sm">
-          <a href="/" className="hover:text-[#c8b6a6] transition">Home</a>
-          <a href="/about" className="hover:text-[#c8b6a6] transition">About</a>
-          <a href="/faq" className="hover:text-[#c8b6a6] transition">FAQ</a>
-          <a href="/contact" className="hover:text-[#c8b6a6] transition">Contact</a>
+          <a href="/" className="hover:text-[orange] transition">Home</a>
+          <a href="/about" className="hover:text-[orange] transition">About</a>
+          <a href="/faq" className="hover:text-[orange] transition">FAQ</a>
+          <a href="/contact" className="hover:text-[orange] transition">Contact</a>
         </nav>
 
         {/* Copyright */}

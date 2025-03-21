@@ -1,6 +1,6 @@
 import React from "react";
 import yoga from "../../assets/yoga.jpg";
-import meditation from "../../assets/meditation.jpg";
+import meditation from "../../assets/YoungKid_Meditating.jpg";
 import teamProjects from "../../assets/teamproject.jpg";
 import games from "../../assets/games.jpg";
 import talentShow from "../../assets/skits.jpg";
@@ -20,7 +20,7 @@ const activities = [
   },
   {
     title: "Team Projects",
-    description: "Collaborate, innovate, and create! Engage in exciting team projects that foster leadership and creativity.",
+    description: "Principles of Dharma, Gita, Ramayana and essential History will learnt through activities and projects.",
     image: teamProjects,
   },
   {
@@ -58,7 +58,10 @@ const WhatsIncluded: React.FC = () => {
               style={{ backgroundImage: `url(${activity.image})` }}
             ></div>
             <div>
-              <p className="text-[#181411] text-lg font-medium">{activity.title}</p>
+            <p className="text-[#181411] text-lg font-medium break-words whitespace-normal">
+  {activity.title}
+</p>
+
               <p className="text-[#8a7560] text-sm font-normal">{activity.description}</p>
             </div>
           </div>

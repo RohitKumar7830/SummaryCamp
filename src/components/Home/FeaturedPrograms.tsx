@@ -1,6 +1,6 @@
 import React from "react";
 import yoga from "../../assets/yoga.jpg";
-import meditation from "../../assets/meditation.jpg";
+import meditation from "../../assets/YoungKid_Meditating.jpg";
 import teamProjects from "../../assets/teamproject.jpg";
 
 const programs = [
@@ -16,7 +16,7 @@ const programs = [
   },
   {
     title: "Team Projects",
-    description: "Collaborate, innovate, and create! Engage in exciting team projects that foster leadership, creativity, and problem-solving skills.",
+    description: "Principles of Dharma, Gita, Ramayana and essential History will learnt through activities and projects.",
     image: teamProjects,
   },
 ];

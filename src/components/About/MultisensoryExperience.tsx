@@ -14,7 +14,7 @@ const activities = [
 const MultisensoryExperience: React.FC = () => {
   return (
     <section className="px-10 py-16 text-center bg-[#f9f8f6]">
-      <h2 className="text-3xl font-bold">A Multisensory Journey Through India</h2>
+      <h2 className="text-3xl font-bold">A Multisensory Journey Through Ancient Bharath</h2>
       <p className="text-gray-600 mt-4 max-w-3xl mx-auto">
         Our curriculum is a vibrant blend of ancient wisdom and modern expression. Kids will experience the magic of India through a kaleidoscope of activities.
       </p>

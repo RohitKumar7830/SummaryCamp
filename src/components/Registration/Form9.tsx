@@ -1,59 +1,59 @@
-import React from "react";
-import { loadStripe } from "@stripe/stripe-js";
-import { Elements, useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom"; // ✅ For navigation
 
-// Load Stripe with a test key
-const stripePromise = loadStripe("pk_test_51Jxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+const STRIPE_PAYMENT_LINK = "https://buy.stripe.com/test_dR6bMs1bfanv0GQfYY"; // Replace with actual Stripe link
 
-const CheckoutForm: React.FC = () => {
-  const stripe = useStripe();
-  const elements = useElements();
+type FormProps = {
+  onValidityChange: (isValid: boolean) => void;
+};
 
-  const handleSubmit = async (event: React.FormEvent) => {
-    event.preventDefault();
+const Form9: React.FC<FormProps> = ({ onValidityChange }) => {
+  const [paymentSuccess, setPaymentSuccess] = useState(false);
+  const navigate = useNavigate(); // ✅ React Router navigation
 
-    if (!stripe || !elements) return;
+  useEffect(() => {
+    const queryParams = new URLSearchParams(window.location.search);
 
-    const { error, paymentMethod } = await stripe.createPaymentMethod({
-      type: "card",
-      card: elements.getElement(CardElement)!,
-    });
+    if (queryParams.get("payment") === "success") {
+      setPaymentSuccess(true);
+      onValidityChange(true); // ✅ Unlock Next button
 
-    if (error) {
-      console.error("Payment Error:", error);
-      alert(error.message);
-    } else {
-      console.log("Payment Successful, PaymentMethod ID:", paymentMethod.id);
-      alert("Payment successful! (Dummy Payment)");
-      // Normally, you'd send `paymentMethod.id` to your backend here
+      // ✅ Show alert immediately
+      alert("✅ Payment successful! Redirecting to the final step...");
+
+      // ✅ Auto-redirect after 1.5 sec
+      setTimeout(() => {
+        navigate("/apply?step=10"); // ✅ Redirect to Form10
+      }, 1500);
     }
+  }, [onValidityChange, navigate]);
+
+  const handlePayment = () => {
+    window.location.href = STRIPE_PAYMENT_LINK; // Redirect user to Stripe checkout
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
-      <CardElement className="border p-4 rounded-lg" />
-      <button
-        type="submit"
-        disabled={!stripe}
-        className="px-6 py-3 bg-orange-500 text-white rounded-lg hover:bg-orange-600 w-full"
-      >
-        Pay Now (Test Mode)
-      </button>
-    </form>
-  );
-};
+    <div className="bg-white shadow-lg rounded-lg p-10 w-full max-w-2xl text-center">
+      <h2 className="text-2xl font-bold mb-6">Payment</h2>
 
-const Form9: React.FC = () => {
-  return (
-    <Elements stripe={stripePromise}>
-      <div className="bg-white shadow-lg rounded-lg p-10 w-full max-w-2xl">
-        {/* Section Title */}
-        <h2 className="text-2xl font-bold mb-6">Payment</h2>
-
-        {/* Payment Gateway */}
-        <CheckoutForm />
-      </div>
-    </Elements>
+      {!paymentSuccess ? (
+        <>
+          <button
+            onClick={handlePayment}
+            className="px-6 py-3 bg-orange-500 text-white rounded-lg hover:bg-orange-600 w-full"
+          >
+            Proceed to Payment
+          </button>
+          <p className="text-sm text-gray-500 mt-4">
+            You will be redirected to a secure payment page.
+          </p>
+        </>
+      ) : (
+        <div className="text-green-600 text-lg font-semibold mt-4">
+          ✅ Payment Successful! Redirecting...
+        </div>
+      )}
+    </div>
   );
 };
 

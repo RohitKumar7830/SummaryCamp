@@ -1,6 +1,32 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
-const Form7: React.FC = () => {
+type FormProps = {
+  formData: Record<string, string | boolean>;
+  onValidityChange: (isValid: boolean) => void;
+  onChange: (section: string, field: string, value: boolean) => void;
+};
+
+const Form7: React.FC<FormProps> = ({ formData, onValidityChange, onChange }) => {
+  const [attendanceChecked, setAttendanceChecked] = useState(
+    (formData["attendanceAcknowledgement_attendanceChecked"] as boolean) || false
+  );
+  const [permissionChecked, setPermissionChecked] = useState(
+    (formData["attendanceAcknowledgement_permissionChecked"] as boolean) || false
+  );
+  const [errors, setErrors] = useState({ attendance: false, permission: false });
+
+  useEffect(() => {
+    const isValid = attendanceChecked && permissionChecked;
+    onValidityChange(isValid);
+  }, [attendanceChecked, permissionChecked, onValidityChange]);
+
+  const handleValidation = () => {
+    setErrors({
+      attendance: !attendanceChecked,
+      permission: !permissionChecked,
+    });
+  };
+
   return (
     <div className="bg-white shadow-lg rounded-lg p-10 w-full max-w-2xl">
       {/* Section Title */}
@@ -20,21 +46,41 @@ const Form7: React.FC = () => {
       {/* Agreement Checkbox */}
       <div className="mb-6">
         <label className="flex items-center space-x-3">
-          <input type="checkbox" className="form-checkbox h-5 w-5 text-orange-500" />
+          <input
+            type="checkbox"
+            className="form-checkbox h-5 w-5 text-orange-500"
+            checked={attendanceChecked}
+            onChange={(e) => {
+              setAttendanceChecked(e.target.checked);
+              onChange("attendanceAcknowledgement", "attendanceChecked", e.target.checked);
+            }}
+            onBlur={handleValidation}
+          />
           <span className="text-gray-700">
             I have read and agree with the Attendance Acknowledgement as stated above.
           </span>
         </label>
+        {errors.attendance && <p className="text-red-500 text-sm">You must agree to proceed.</p>}
       </div>
 
       {/* Permission Checkbox */}
       <div className="mb-6">
         <label className="flex items-center space-x-3">
-          <input type="checkbox" className="form-checkbox h-5 w-5 text-orange-500" />
+          <input
+            type="checkbox"
+            className="form-checkbox h-5 w-5 text-orange-500"
+            checked={permissionChecked}
+            onChange={(e) => {
+              setPermissionChecked(e.target.checked);
+              onChange("attendanceAcknowledgement", "permissionChecked", e.target.checked);
+            }}
+            onBlur={handleValidation}
+          />
           <span className="text-gray-700">
             I give permission to Camp staff and/or persons authorized by Camp Management to use pictures and/or videos that may include attendees in this application for Camp promotional purposes.
           </span>
         </label>
+        {errors.permission && <p className="text-red-500 text-sm">You must give permission to proceed.</p>}
       </div>
     </div>
   );

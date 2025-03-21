@@ -14,7 +14,7 @@ const FAQHero: React.FC<FAQHeroProps> = ({ setSearchQuery }) => {
 
   return (
     <header
-      className="w-full flex flex-col items-center text-center py-24 bg-cover bg-center min-h-[300px] text-white"
+      className="w-full flex flex-col items-center text-center py-24 bg-cover bg-center min-h-[300px] text-white mt-24"
       style={{
         backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5)), url(${faqHeroImage})`,
       }}

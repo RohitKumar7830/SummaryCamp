@@ -5,6 +5,7 @@ import MissionStatement from "../components/About/MissionStatement";
 import MultisensoryExperience from "../components/About/MultisensoryExperience";
 import ImpactSection from "../components/About/ImpactSection";
 import Footer from "../components/common/Footer";
+import LocationMap from "../components/About/LocationMap";
 
 const About: React.FC = () => {
   return (
@@ -14,6 +15,7 @@ const About: React.FC = () => {
       <MissionStatement />
       <MultisensoryExperience />
       <ImpactSection />
+      <LocationMap />
       <Footer />
     </div>
   );

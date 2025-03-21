@@ -26,8 +26,8 @@ const ContactUs: React.FC = () => {
             {/* Right Side - Contact Details */}
             <div className="w-full md:w-1/2 mt-6 md:mt-0 p-6">
               <p className="text-lg font-medium">Email:</p>
-              <a href="mailto:DharmAwakeningCamp@gmail.com" className="text-blue-600 hover:underline">
-                DharmAwakeningCamp@gmail.com
+              <a href="mailto:DharmaAwakeningCamp@gmail.com" className="text-blue-600 hover:underline">
+                DharmaAwakeningCamp@gmail.com
               </a>
 
               <p className="text-lg font-medium mt-4">Phone:</p>

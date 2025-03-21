@@ -1,6 +1,37 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
-const Form8: React.FC = () => {
+type FormProps = {
+  formData: Record<string, string | boolean>;
+  onValidityChange: (isValid: boolean) => void;
+  onChange: (section: string, field: string, value: boolean) => void;
+};
+
+const Form8: React.FC<FormProps> = ({ formData, onValidityChange, onChange }) => {
+  const [refundAcknowledged, setRefundAcknowledged] = useState(
+    (formData["refundPolicy_refundAcknowledged"] as boolean) || false
+  );
+  const [error, setError] = useState(false);
+
+  useEffect(() => {
+    if (refundAcknowledged) {
+      setError(false);
+      onValidityChange(true);
+    } else {
+      onValidityChange(false);
+    }
+  }, [refundAcknowledged, onValidityChange]);
+
+  const handleChange = (value: boolean) => {
+    setRefundAcknowledged(value);
+    onChange("refundPolicy", "refundAcknowledged", value);
+  };
+
+  const handleValidation = () => {
+    if (!refundAcknowledged) {
+      setError(true);
+    }
+  };
+
   return (
     <div className="bg-white shadow-lg rounded-lg p-10 w-full max-w-2xl">
       {/* Section Title */}
@@ -20,11 +51,16 @@ const Form8: React.FC = () => {
       {/* Agreement Checkbox */}
       <div className="mb-6">
         <label className="flex items-center space-x-3">
-          <input type="checkbox" className="form-checkbox h-5 w-5 text-orange-500" />
-          <span className="text-gray-700">
-            I have read and understand the refund policy.
-          </span>
+          <input
+            type="checkbox"
+            className="form-checkbox h-5 w-5 text-orange-500"
+            checked={refundAcknowledged}
+            onChange={(e) => handleChange(e.target.checked)}
+            onBlur={handleValidation}
+          />
+          <span className="text-gray-700">I have read and understand the refund policy.</span>
         </label>
+        {error && <p className="text-red-500 text-sm">You must acknowledge the refund policy to proceed.</p>}
       </div>
     </div>
   );
