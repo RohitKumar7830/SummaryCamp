@@ -723,7 +723,7 @@ const RegistrationForm = () => {
   onClick={() => {
     localStorage.setItem("camp_form_data", JSON.stringify(formData));
   }}
-  href="https://buy.stripe.com/test_dR6bMs1bfanv0GQfYY"
+  href="https://buy.stripe.com/eVaaFy7wz8O47kc4gh"
   className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition"
 >
   Continue to Payment
