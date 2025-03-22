@@ -9,18 +9,22 @@ import Register from "./pages/Register";
 import FAQ from "./pages/FAQ";
 import Contact from "./pages/ContactUs";
 import ApplyCounselor from "./pages/ApplyCounselor";
+import CampRulesPage from "./pages/CampRulesPage";
+import ScrollToTop from './components/common/ScrollToTop';
 
 const App: React.FC = () => {
   return (
     <>
+      <Navbar />
+      <ScrollToTop /> {/* 👈 Add this line */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
-        {/* {/* <Route path="/activities" element={<Activities />} /> */}
         <Route path="/faq" element={<FAQ />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/apply" element={<Register />} />
-        <Route path="/apply-counselor" element={<ApplyCounselor />} /> {/* Apply for Counselor */}
+        <Route path="/apply-counselor" element={<ApplyCounselor />} />
+        <Route path="/camp-rules" element={<CampRulesPage />} />
       </Routes>
     </>
   );

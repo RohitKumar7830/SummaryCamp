@@ -10,7 +10,8 @@ const Navbar: React.FC = () => {
     <>
       {/* Main Navbar (Hidden when menu is open) */}
       {!isOpen && (
-        <nav className="fixed top-0 left-0 w-full flex items-center justify-between px-10 py-6 bg-transparent backdrop-blur-md z-50 transition-opacity duration-300">
+        <nav className="fixed top-0 left-0 w-full flex items-center justify-between px-10 py-6 bg-transparent z-50 transition-opacity duration-300">
+
           {/* Logo */}
           <Link to="/" className="cursor-pointer">
             <img src={logo} alt="DharmaAwakening Camp" className="h-20 w-20" />
@@ -22,12 +23,14 @@ const Navbar: React.FC = () => {
             <li><Link to="/about" className="hover:text-orange-300">About</Link></li>
             <li><Link to="/faq" className="hover:text-orange-300">FAQ</Link></li>
             <li><Link to="/contact" className="hover:text-orange-300">Contact Us</Link></li>
+            <li><Link to="/camp-rules" className="hover:text-orange-300">Rules & Regulations</Link></li>
+            
           </ul>
 
           {/* Apply Now Buttons (Desktop) */}
           <div className="hidden md:flex space-x-4">
             <Link to="/apply" className="bg-orange-500 text-white px-4 py-2 rounded-md hover:bg-orange-600">
-              Apply for Camp
+              Register for Camp
             </Link>
             <Link to="/apply-counselor" className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">
               Apply for Counselor
@@ -69,11 +72,12 @@ const Navbar: React.FC = () => {
               <li><Link to="/about" className="block hover:text-orange-300" onClick={() => setIsOpen(false)}>About</Link></li>
               <li><Link to="/faq" className="block hover:text-orange-300" onClick={() => setIsOpen(false)}>FAQ</Link></li>
               <li><Link to="/contact" className="block hover:text-orange-300" onClick={() => setIsOpen(false)}>Contact Us</Link></li>
+              <li><Link to="/camp-rules" className="hover:text-orange-300">Rules & Regulations</Link></li>
             </ul>
 
             {/* Apply Now Buttons (Mobile) */}
             <Link to="/apply" className="mt-6 bg-orange-500 text-white px-4 py-2 rounded-md hover:bg-orange-600 w-full text-center">
-              Apply for Camp
+              Register for Camp
             </Link>
             <Link to="/apply-counselor" className="mt-3 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 w-full text-center">
               Apply for Counselor

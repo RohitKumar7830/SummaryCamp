@@ -19,11 +19,11 @@ const MultisensoryExperience: React.FC = () => {
         Our curriculum is a vibrant blend of ancient wisdom and modern expression. Kids will experience the magic of India through a kaleidoscope of activities.
       </p>
 
-      <div className="grid grid-cols-2 md:grid-cols-4 mt-8">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
         {activities.map((activity, index) => (
           <div key={index} className="flex flex-col items-center">
             <div
-              className="w-48 h-48 bg-cover bg-center rounded-xl"
+              className="w-full aspect-square bg-cover bg-center rounded-xl"
               style={{ backgroundImage: `url(${activity.img})` }}
             ></div>
             <p className="text-lg font-medium mt-2">{activity.title}</p>
