@@ -197,6 +197,7 @@ const RegistrationForm = () => {
         value={formData.firstName}
         onChange={handleChange}
         className="w-full border px-4 py-3 rounded-md"
+        required
       />
     </div>
 
@@ -209,6 +210,7 @@ const RegistrationForm = () => {
         value={formData.lastName}
         onChange={handleChange}
         className="w-full border px-4 py-3 rounded-md"
+        required
       />
     </div>
 
@@ -220,6 +222,7 @@ const RegistrationForm = () => {
         value={formData.dob}
         onChange={handleChange}
         className="w-full border px-4 py-3 rounded-md"
+        required
       />
     </div>
 
@@ -235,6 +238,7 @@ const RegistrationForm = () => {
               checked={formData.gender === gender}
               onChange={handleChange}
               className="accent-blue-600"
+              required
             />
             {gender}
           </label>
@@ -261,6 +265,7 @@ const RegistrationForm = () => {
               checked={formData.extracurricular.includes(activity)}
               onChange={handleChange}
               className="accent-blue-600"
+              required
             />
             {activity}
           </label>
@@ -286,6 +291,7 @@ const RegistrationForm = () => {
         placeholder="Parent 1 Full Name"
         onChange={handleChange}
         className="w-full border px-4 py-3 rounded-md"
+        required
       />
     </div>
 
@@ -297,6 +303,7 @@ const RegistrationForm = () => {
         placeholder="Parent 1 Phone"
         onChange={handleChange}
         className="w-full border px-4 py-3 rounded-md"
+        required
       />
     </div>
 
@@ -308,6 +315,7 @@ const RegistrationForm = () => {
         placeholder="Parent 1 Email"
         onChange={handleChange}
         className="w-full border px-4 py-3 rounded-md"
+        required
       />
     </div>
 
@@ -319,6 +327,7 @@ const RegistrationForm = () => {
         placeholder="Father's Name"
         onChange={handleChange}
         className="w-full border px-4 py-3 rounded-md"
+        required
       />
     </div>
 
@@ -330,6 +339,7 @@ const RegistrationForm = () => {
         placeholder="Parent 2 Phone"
         onChange={handleChange}
         className="w-full border px-4 py-3 rounded-md"
+        required
       />
     </div>
 
@@ -341,6 +351,7 @@ const RegistrationForm = () => {
         placeholder="Parent 2 Email"
         onChange={handleChange}
         className="w-full border px-4 py-3 rounded-md"
+        required
       />
     </div>
 
@@ -351,6 +362,7 @@ const RegistrationForm = () => {
         placeholder="Residential Address"
         onChange={handleChange}
         className="w-full border px-4 py-3 rounded-md"
+        required
       />
     </div>
 
@@ -362,6 +374,7 @@ const RegistrationForm = () => {
         placeholder="Emergency Contact Name"
         onChange={handleChange}
         className="w-full border px-4 py-3 rounded-md"
+        required
       />
     </div>
 
@@ -373,6 +386,7 @@ const RegistrationForm = () => {
         placeholder="Emergency Contact Phone"
         onChange={handleChange}
         className="w-full border px-4 py-3 rounded-md"
+        required
       />
     </div>
 
@@ -384,6 +398,7 @@ const RegistrationForm = () => {
         placeholder="Emergency Contact Email"
         onChange={handleChange}
         className="w-full border px-4 py-3 rounded-md"
+        required
       />
     </div>
   </div>
@@ -408,6 +423,7 @@ const RegistrationForm = () => {
         name="foodAllergies"
         onChange={handleChange}
         className="w-full border px-4 py-3 rounded-md"
+        required
       />
     </div>
 
@@ -605,6 +621,7 @@ const RegistrationForm = () => {
         checked={formData.medicalDocsAcknowledged}
         onChange={handleChange}
         className="accent-blue-600 mt-1"
+        required
       />
       I have read the Medical Documentation Requirement and will be providing the required documents, which are needed to application to be complete.
     </label>
@@ -643,6 +660,7 @@ const RegistrationForm = () => {
         checked={formData.medicalAcknowledgement}
         onChange={handleChange}
         className="accent-blue-600 mt-1"
+        required
       />
       I have read and agree with the Medical Acknowledgement as stated above.
     </label>
@@ -671,6 +689,7 @@ const RegistrationForm = () => {
         checked={formData.attendanceAcknowledgement}
         onChange={handleChange}
         className="accent-blue-600 mt-1"
+        required
       />
       I have read and agree with the Attendance Acknowledgement as stated above.
     </label>
@@ -681,6 +700,7 @@ const RegistrationForm = () => {
         name="mediaPermission"
         checked={formData.mediaPermission}
         onChange={handleChange}
+        required
         className="accent-blue-600 mt-1"
       />
       I give permission to Camp staff and/or persons authorized by Camp Management to use pictures and/or videos that may include attendees in this application for Camp promotional purposes.
@@ -709,6 +729,7 @@ const RegistrationForm = () => {
         name="refundAcknowledgement"
         checked={formData.refundAcknowledgement}
         onChange={handleChange}
+        required
         className="accent-blue-600 mt-1"
       />
       I have read and understand the refund policy
@@ -717,22 +738,65 @@ const RegistrationForm = () => {
 </div>
 
  {/* Payment Button Section */}
- {!showFinalSection && (
-          <div className="text-center">
-            <a
-  onClick={() => {
-    localStorage.setItem("camp_form_data", JSON.stringify(formData));
-  }}
-  href="https://buy.stripe.com/eVaaFy7wz8O47kc4gh"
-  className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition"
->
-  Continue to Payment
-</a>
+{!showFinalSection && (
+  <div className="text-center">
+    <button
+      type="button"
+      onClick={() => {
+        const requiredFields: (keyof typeof formData)[] = [
+          "dob", "firstName", "lastName", "gender",
+          "parent1Name", "parent1Phone", "parent1Email", "fatherName",
+          "parent2Phone", "parent2Email", "residentialAddress",
+          "emergencyContactName", "emergencyContactPhone", "emergencyContactEmail",
+          "foodAllergies", "medicationAllergies", "currentMedications",
+          "administerMedications", "covidVaccinationStatus"
+        ];
 
+        for (const field of requiredFields) {
+          if (!formData[field]) {
+            alert(`Please fill in the ${field.replace(/([A-Z])/g, ' $1')} field.`);
+            return;
+          }
+        }
 
+        if (formData.extracurricular.length === 0) {
+          alert("Please select at least one extracurricular activity.");
+          return;
+        }
 
-          </div>
-        )}
+        if (formData.administerMedications === "Yes") {
+          if (
+            !formData.acknowledgeRequirement ||
+            !formData.physicianPhone ||
+            !formData.insuranceProvider ||
+            !formData.policyNumber ||
+            !formData.policyOwner
+          ) {
+            alert("Please complete all medication-related fields.");
+            return;
+          }
+        }
+
+        if (
+          !formData.medicalDocsAcknowledged ||
+          !formData.medicalAcknowledgement ||
+          !formData.attendanceAcknowledgement ||
+          !formData.refundAcknowledgement
+        ) {
+          alert("Please check all acknowledgement boxes.");
+          return;
+        }
+
+        localStorage.setItem("camp_form_data", JSON.stringify(formData));
+        window.location.href = "https://buy.stripe.com/eVaaFy7wz8O47kc4gh";
+      }}
+      className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition"
+    >
+      Continue to Payment
+    </button>
+  </div>
+)}
+
 
           </>
         )}
@@ -779,6 +843,7 @@ const RegistrationForm = () => {
                     checked={formData.parentAcknowledgement}
                     onChange={handleChange}
                     className="accent-blue-600 mt-1"
+                    required
                   />
                   Acknowledged & Signed
                 </label>
