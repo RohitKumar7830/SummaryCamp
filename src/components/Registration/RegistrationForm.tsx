@@ -2,6 +2,7 @@ import { useRef, useState, useEffect } from "react";
 
 const RegistrationForm = () => {
   const section9Ref = useRef<HTMLDivElement | null>(null);
+  const registrationsClosed = true; // Toggle this to false to reopen registrations
 
   const [formData, setFormData] = useState({
     dob: "",
@@ -178,7 +179,26 @@ const RegistrationForm = () => {
 
   return (
     <div className="max-w-3xl mx-auto px-6 py-16 mt-12">
-      <form onSubmit={handleSubmit} className="space-y-12">
+      {registrationsClosed ? (
+       <div className="bg-white rounded-2xl shadow-md hover:shadow-xl hover:scale-[1.01] transition-all px-6 py-10 sm:px-10 md:px-12 lg:px-16 text-center">
+       <h2 className="text-2xl sm:text-3xl font-semibold text-blue-900 mb-4">
+         Registrations Are Closed
+       </h2>
+       <p className="text-gray-700 text-base sm:text-lg leading-relaxed">
+         Thank you for your interest! Registrations for this year's camp are now closed.
+         <br className="hidden sm:block" />
+         Please check back next year or contact us at{" "}
+         <a
+           href="mailto:dharmaawakeningcamp@gmail.com"
+           className="text-blue-600 underline"
+         >
+           dharmaawakeningcamp@gmail.com
+         </a>{" "}
+         for more details.
+       </p>
+     </div>
+      ) : (
+        <form onSubmit={handleSubmit} className="space-y-12">
         {!showFinalSection && (
           <>
              {/* Section 1 */}
@@ -860,6 +880,7 @@ const RegistrationForm = () => {
           </>
         )}
       </form>
+      )}
     </div>
   );
 };
